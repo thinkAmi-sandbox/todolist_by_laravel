@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  db:
+    build: ./docker/mysql
+    image: mysql:8.0.16
+    restart: always
+    command:
+      - "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_DATABASE: homestead
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "13306:3306"
+    volumes:
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d
+      - ./log/mysql:/var/log/mysql
